@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  auth: false,
+  middleware: 'guest',
   data() {
     return {
       user: {
@@ -40,6 +40,9 @@ export default {
       }
     }
   },
+  mounted() {
+    console.log(this.$auth.loggedIn)
+  },
   methods: {
     async passwordGrantLogin() {
       await this.$auth.loginWith('password_grant', {
@@ -47,12 +50,11 @@ export default {
           grant_type: 'password',
           client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
           client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
-          scope: '*',
+          scope: '',
           username: this.user.username,
           password: this.user.password
         }
       })
-      this.$router.replace('/')
     }
   }
 }

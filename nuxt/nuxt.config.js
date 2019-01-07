@@ -59,9 +59,11 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt'
   ],
+
   /*
    ** Axios module configuration
    */
@@ -71,7 +73,14 @@ module.exports = {
   },
 
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/profile'
+    },
     strategies: {
+      local: false,
       password_grant: {
         _scheme: 'local',
         endpoints: {
@@ -82,7 +91,9 @@ module.exports = {
           },
           logout: false,
           user: {
-            url: 'api/auth/me'
+            url: 'api/auth/me',
+            method: 'get',
+            propertyName: 'user'
           }
         }
       }
