@@ -2,7 +2,7 @@
 Nuxt & Laravel Passport Example
 </h1>
 
-> This example implements nuxt app as a first-party client and laravel as the backend. It supports Passport-password grant out of the box which allows your other first-party clients, such as a mobile application, to obtain an access token using an e-mail address and password. But feel free to use other grant types in _laravel/passport_ by extending this.
+> This example implements Nuxt app as a first-party client and Laravel Passport as the backend API. It supports Passport-password grant out of the box which allows your other first-party clients, such as a mobile application, to obtain an access token using an e-mail address and password. But feel free to use other grant types in _laravel/passport_ by extending this.
 
 ## Installation
 
