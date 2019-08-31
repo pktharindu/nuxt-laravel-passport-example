@@ -8,10 +8,9 @@
       <strong>User</strong>
       <pre>{{ $auth.user }}</pre>
     </div>
-    <button
-      class="btn btn-primary"
-      @click="logout"
-    >Logout</button>
+    <button class="btn btn-primary" @click="logout">
+      Logout
+    </button>
   </section>
 </template>
 
@@ -23,9 +22,7 @@ export default {
       strategy: this.$auth.$storage.getUniversal('strategy')
     }
   },
-  mounted() {
-    console.log(this.$auth.loggedIn)
-  },
+  mounted() {},
   methods: {
     async logout() {
       await this.$auth.logout()

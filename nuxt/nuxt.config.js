@@ -1,14 +1,13 @@
 require('dotenv').config()
-const pkg = require('./package')
 
-module.exports = {
+export default {
   mode: 'universal',
 
   /*
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: process.env.npm_package_name || '',
     meta: [
       {
         charset: 'utf-8'
@@ -20,7 +19,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: pkg.description
+        content: process.env.npm_package_description || ''
       }
     ],
     link: [
@@ -36,10 +35,7 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
-    name: 'chasing-dots',
-    color: '#ff5638',
-    background: 'white',
-    height: '4px'
+    color: '#fff'
   },
 
   /*
@@ -53,22 +49,30 @@ module.exports = {
   plugins: [],
 
   /*
+   ** Nuxt.js dev-modules
+   */
+  buildModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module'
+  ],
+
+  /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
+    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
-    // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt'
   ],
 
   /*
    ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
     baseURL: process.env.LARAVEL_ENDPOINT
   },
 
@@ -107,16 +111,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    extend(config, ctx) {}
   }
 }

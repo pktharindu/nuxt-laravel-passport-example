@@ -8,7 +8,7 @@
               v-model="user.username"
               class="form-control"
               placeholder="Username"
-            >
+            />
           </div>
           <div class="form-group">
             <input
@@ -16,13 +16,15 @@
               type="password"
               class="form-control"
               placeholder="Password"
-            >
+            />
           </div>
           <button
             type="submit"
             class="btn btn-primary btn-block"
             @click.prevent="passwordGrantLogin"
-          >Login with Password Grant</button>
+          >
+            Login with Password Grant
+          </button>
         </form>
       </div>
     </div>
@@ -40,9 +42,7 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.$auth.loggedIn)
-  },
+  mounted() {},
   methods: {
     async passwordGrantLogin() {
       await this.$auth.loginWith('password_grant', {
